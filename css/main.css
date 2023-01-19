@@ -1,0 +1,9 @@
+body{
+  background-color: antiquewhite;
+}
+
+ul.list{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
