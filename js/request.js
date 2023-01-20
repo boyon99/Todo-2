@@ -4,7 +4,6 @@ const headers = {
   username: 'KDT4_LeeEoJin'
 }
 
-
 export async function createTodo(title) {
   try {
     const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos', {

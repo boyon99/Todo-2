@@ -1,7 +1,6 @@
 import { createTodo, readTodos, updateTodo, deleteTodo } from './request.js'
 
 
-let preventDoubleClick = false
 
 const inputEl = document.querySelector('.create input')
 const btnEl = document.querySelector('.create button')
@@ -17,12 +16,9 @@ inputEl.addEventListener('keydown', event => {
   }
 })
 btnEl.addEventListener('click', async () => {
-  // if (preventDoubleClick) return
-  // preventDoubleClick = true
   await createTodo(inputText)
   const todos = await readTodos()
   renderTodos(todos)
-  // preventDoubleClick = false
 })
 
 ;(async () => {
@@ -43,7 +39,7 @@ function renderTodos(todos) {
     })
 
     const btnEl = document.createElement('button')
-    btnEl.textContent = '삭제!'
+    btnEl.textContent = '삭제'
     btnEl.addEventListener('click', async () => {
       await deleteTodo(todo)
       const todos = await readTodos()
@@ -56,4 +52,16 @@ function renderTodos(todos) {
   listEl.innerHTML = ''
   listEl.append(...liEls)
 }
+
+
+
+// Simple list
+Sortable.create(simpleList, { /* options */ });
+
+// List with handle
+Sortable.create(listWithHandle, {
+  handle: '.glyphicon-move',
+  animation: 150
+});
+
 
