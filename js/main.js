@@ -4,8 +4,9 @@ import { createTodo, readTodos, updateTodo, deleteTodo } from './request.js'
 
 const inputEl = document.querySelector('.create input')
 const btnEl = document.querySelector('.create button')
-const listEl = document.querySelector('.list')
+const todoConatinerEl = document.querySelector('.todo-container')
 
+// input 
 let inputText = ''
 inputEl.addEventListener('input', () => {
   inputText = inputEl.value
@@ -19,39 +20,58 @@ btnEl.addEventListener('click', async () => {
   await createTodo(inputText)
   const todos = await readTodos()
   renderTodos(todos)
+  inputEl.value = ''
 })
 
-;(async () => {
-  const todos = await readTodos()
-  renderTodos(todos)
-})()
+  // render
+  ; (async () => {
+    const todos = await readTodos()
+    renderTodos(todos)
+  })()
 
+// create-todo
 function renderTodos(todos) {
   const liEls = todos.map(todo => {
-    const liEl = document.createElement('li')
-    liEl.innerHTML = /* html */ `
-      <span>${todo.title}</span>
-    `
-    liEl.addEventListener('click', async () => {
+    const divEl = document.createElement('div')
+    const inputUpdateEl = document.createElement('input')
+    inputUpdateEl.type = "text"
+    inputUpdateEl.value = todo.title
+    inputUpdateEl.focus()
+    // input-todo
+    let inputText = inputUpdateEl.value
+    inputUpdateEl.addEventListener('input', async () => {
+      inputText = inputUpdateEl.value
+    })
+
+    todo.title = inputText
+
+    // update-todo
+    const btnUpdateEl = document.createElement('button')
+    btnUpdateEl.textContent = '수정'
+    btnUpdateEl.addEventListener('click', async () => {
+      todo.title = inputText
       await updateTodo(todo)
       const todos = await readTodos()
       renderTodos(todos)
     })
 
-    const btnEl = document.createElement('button')
-    btnEl.textContent = '삭제'
-    btnEl.addEventListener('click', async () => {
+    // delete-todo
+    const btnDeleteEl = document.createElement('button')
+    btnDeleteEl.textContent = '삭제'
+    btnDeleteEl.addEventListener('click', async () => {
       await deleteTodo(todo)
       const todos = await readTodos()
       renderTodos(todos)
     })
-    liEl.append(btnEl)
-    
-    return liEl
+    divEl.append(inputUpdateEl, btnUpdateEl, btnDeleteEl)
+
+    return divEl
   })
-  listEl.innerHTML = ''
-  listEl.append(...liEls)
+  todoConatinerEl.innerHTML = ''
+  todoConatinerEl.append(...liEls)
 }
+
+
 
 
 

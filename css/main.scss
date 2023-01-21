@@ -1,19 +1,31 @@
 body{
   display: flex;
+  flex-direction: column;
 }
 
+.create{
+  margin: 10px auto;
+  input{
+    border: solid 2px #666;
 
+  }
+  button{
+    border: solid 2px #666;
+  }
+}
 
-ul.list{
-  position: absolute;
-  top: 30px;
-  left: 30px;
+.todo-container{
+  margin: 10px auto;
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  input{
+    width: 200px;
+  }
+  input[type=text]{
+    padding: 5px 10px;
+    text-align: left;
+  }
 }
 
 
-.list-group{
-  position: absolute;
-  top: 30px;
-  right: 30px;
-}

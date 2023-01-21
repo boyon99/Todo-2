@@ -39,11 +39,12 @@ export async function updateTodo(todo) {
     method: 'PUT',
     headers,
     body: JSON.stringify({
-      title: `${todo.title}!`,
+      title: `${todo.title}`,
       done: todo.done
     })
   })
 }
+
 
 export async function deleteTodo(todo) {
   await fetch(`https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos/${todo.id}`, {
