@@ -2,8 +2,9 @@ import { createTodo, readTodos, updateTodo, deleteTodo } from './request.js'
 
 
 
-const inputEl = document.querySelector('.create input')
+const inputEl = document.querySelector('.create .input')
 const btnEl = document.querySelector('.create button')
+const starEl = document.querySelector('.create .star')
 const todoConatinerEl = document.querySelector('.todo-container')
 const loadingEl = document.querySelector('.loading')
 
@@ -12,6 +13,8 @@ let inputText = ''
 inputEl.addEventListener('input', () => {
   inputText = inputEl.value
 })
+
+// click
 inputEl.addEventListener('keydown', event => {
   if (event.key === 'Enter' && !event.isComposing) {
     btnEl.click()
@@ -19,8 +22,9 @@ inputEl.addEventListener('keydown', event => {
 })
 btnEl.addEventListener('click', async () => {
   await createTodo(inputText)
+  const isStarEl = starEl.checked
   const todos = await readTodos()
-  renderTodos(todos)
+  renderTodos(todos, isStarEl)
   inputEl.value = ''
 })
 
@@ -36,13 +40,17 @@ btnEl.addEventListener('click', async () => {
 
 
 // create-todo
-function renderTodos(todos) {
+function renderTodos(todos, isStarEl) {
   const liEls = todos.map(todo => {
 
     console.log(todo)
     // div
     const divEl = document.createElement('div')
     divEl.classList.add("todolist", "list-group-item")
+
+    if(isStarEl){
+      divEl.classList.add("important")
+    }
 
     // checkbox
     const checkboxEl = document.createElement('input')
@@ -78,7 +86,7 @@ function renderTodos(todos) {
 
     // update-btn
     const btnUpdateEl = document.createElement('button')
-    btnUpdateEl.textContent = '수정'
+    btnUpdateEl.textContent = '저장'
     btnUpdateEl.classList.add("btn--update")
     btnUpdateEl.style.opacity = "0"
 
