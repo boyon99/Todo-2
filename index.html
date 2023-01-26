@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--html-->
+  <link rel="stylesheet" href="./css/main.scss" />
+  <!--css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/FrozenUI/1.3.0/css/reset.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Explora&family=Indie+Flower&family=Kalam:wght@700&family=Rubik+80s+Fade&family=Rubik+Storm&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">  
+    <!--js-->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script defer type="module" src="./js/main.js"></script>
+
+  <title>To-Do</title>
+</head>
+
+<body>
+  <div class="title">
+    <span>too, today do it!</span>
+  </div>
+  <!--input-->
+  <div class="create">
+    <input class="star" type="checkbox" title="bookmark page">
+    <input type="text" name="" id="" class="input" placeholder="할일을 입력하세요">
+    <button><img src="./image/plus.png"style="width: 20px; height: 20px;"></button>
+  </div>
+
+  <!--filter-->
+  <div class="filter">
+    <select name="done" id="done">
+      <option value="all">all</option>
+      <option value="done">done</option>
+      <option value="not-done">doing</option>
+    </select>
+  </div>
+  <!--list-->
+  <div class="todo-container list-group" id="simpleList">
+  </div>
+  <!--loading-->
+  <div class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</body>
+
+</html>
