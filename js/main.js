@@ -34,8 +34,6 @@ btnEl.addEventListener('click', async () => {
 function renderTodos(todos) {
   const liEls = todos.map(todo => {
 
-    console.log(todo)
-
     // div
     const divEl = document.createElement('div')
     divEl.classList.add("todolist", "list-group-item")
@@ -112,9 +110,17 @@ function renderTodos(todos) {
 const selectEl = document.querySelector("#done")
 console.log(selectEl.value)
 
-selectEl.addEventListener("change", ()=>{
+selectEl.addEventListener("change", async ()=>{
+  todoConatinerEl.innerHTML = ''
   if(selectEl.value==="done"){
-
+    const todos = await readTodos()
+    renderTodos(todos.filter(i=> i.done))
+  } else if(selectEl.value==="not-done"){
+    const todos = await readTodos()
+    renderTodos(todos.filter(i=> !i.done))
+  } else{
+    const todos = await readTodos()
+    renderTodos(todos)
   }
 })
 
