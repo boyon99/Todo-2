@@ -5,6 +5,7 @@ import { createTodo, readTodos, updateTodo, deleteTodo } from './request.js'
 const inputEl = document.querySelector('.create input')
 const btnEl = document.querySelector('.create button')
 const todoConatinerEl = document.querySelector('.todo-container')
+const loadingEl = document.querySelector('.loading')
 
 // input 
 let inputText = ''
@@ -26,7 +27,11 @@ btnEl.addEventListener('click', async () => {
   // render
   ; (async () => {
     const todos = await readTodos()
-    renderTodos(todos)
+    // loading 
+    setTimeout(() => {
+      loadingEl.style.display = "none"
+      renderTodos(todos)
+    }, 500)
   })()
 
 
@@ -80,12 +85,16 @@ function renderTodos(todos) {
     // update-todo
     btnUpdateEl.addEventListener('click', async () => {
       todo.done = checkboxEl.checked ? true : false;
-      
       todo.title = inputText
       console.log(todo)
       await updateTodo(todo)
       const todos = await readTodos()
-      renderTodos(todos)
+      loadingEl.style.display = "block"
+
+      setTimeout(() => {
+        loadingEl.style.display = "none"
+        renderTodos(todos)
+      }, 500)
     })
 
     divEl.addEventListener('mouseover', () => {
@@ -108,7 +117,14 @@ function renderTodos(todos) {
     btnDeleteEl.addEventListener('click', async () => {
       await deleteTodo(todo)
       const todos = await readTodos()
-      renderTodos(todos)
+
+
+      loadingEl.style.display = "block"
+
+      setTimeout(() => {
+        loadingEl.style.display = "none"
+        renderTodos(todos)
+      }, 500)
     })
 
     divEl.append(checkboxEl, inputUpdateEl, btnUpdateEl, btnDeleteEl, createDate, updateDate)
@@ -123,15 +139,15 @@ function renderTodos(todos) {
 // select done
 const selectEl = document.querySelector("#done")
 
-selectEl.addEventListener("change", async ()=>{
+selectEl.addEventListener("change", async () => {
   todoConatinerEl.innerHTML = ''
-  if(selectEl.value==="done"){
+  if (selectEl.value === "done") {
     const todos = await readTodos()
-    renderTodos(todos.filter(i=> i.done))
-  } else if(selectEl.value==="not-done"){
+    renderTodos(todos.filter(i => i.done))
+  } else if (selectEl.value === "not-done") {
     const todos = await readTodos()
-    renderTodos(todos.filter(i=> !i.done))
-  } else{
+    renderTodos(todos.filter(i => !i.done))
+  } else {
     const todos = await readTodos()
     renderTodos(todos)
   }
