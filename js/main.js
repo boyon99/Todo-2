@@ -97,13 +97,14 @@ function renderTodos(todos) {
       }, 500)
     })
 
+    // animation
     divEl.addEventListener('mouseover', () => {
       gsap.to(btnUpdateEl, 2, {
         opacity: 1,
         x: -20
       })
     })
-
+    // animation
     divEl.addEventListener('mouseout', () => {
       gsap.to(btnUpdateEl, 2, {
         opacity: 0
@@ -117,10 +118,8 @@ function renderTodos(todos) {
     btnDeleteEl.addEventListener('click', async () => {
       await deleteTodo(todo)
       const todos = await readTodos()
-
-
+      // loading
       loadingEl.style.display = "block"
-
       setTimeout(() => {
         loadingEl.style.display = "none"
         renderTodos(todos)
@@ -137,19 +136,59 @@ function renderTodos(todos) {
 
 
 // select done
+const filterDiv = document.querySelector('.filter')
 const selectEl = document.querySelector("#done")
+const allDeleteBtn = document.createElement('button')
 
-selectEl.addEventListener("change", async () => {
-  todoConatinerEl.innerHTML = ''
-  if (selectEl.value === "done") {
-    const todos = await readTodos()
-    renderTodos(todos.filter(i => i.done))
-  } else if (selectEl.value === "not-done") {
-    const todos = await readTodos()
-    renderTodos(todos.filter(i => !i.done))
-  } else {
+// all delete
+allDeleteBtn.textContent = '모두삭제'
+allDeleteBtn.style.display = 'none'
+filterDiv.append(allDeleteBtn)
+
+allDeleteBtn.addEventListener('click',async ()=>{
+  const todos = await readTodos()
+  const todo = todos.filter(i => i.done)
+  for(let i = 0; i < todo.length; i++){
+    await deleteTodo(todo[i])
+  }
+  // loading
+  loadingEl.style.display = "block"
+  setTimeout(async () => {
+    loadingEl.style.display = "none"
     const todos = await readTodos()
     renderTodos(todos)
+  }, 500)
+})
+
+// filter function
+selectEl.addEventListener("change", async () => {
+  todoConatinerEl.innerHTML = ''
+
+  if (selectEl.value === "done") {
+    const todos = await readTodos()
+    // loading
+    loadingEl.style.display = "block"
+    setTimeout(() => {
+      loadingEl.style.display = "none"
+      renderTodos(todos.filter(i => i.done))
+    }, 300)
+    allDeleteBtn.style.display = 'block'
+  } else if (selectEl.value === "not-done") {
+    const todos = await readTodos()
+    // loading
+    loadingEl.style.display = "block"
+    setTimeout(() => {
+      loadingEl.style.display = "none"
+      renderTodos(todos.filter(i => !i.done))
+    }, 300)
+  } else {
+    const todos = await readTodos()
+    // loading
+    loadingEl.style.display = "block"
+    setTimeout(() => {
+      loadingEl.style.display = "none"
+      renderTodos(todos)
+    }, 300)
   }
 })
 
