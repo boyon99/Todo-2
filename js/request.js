@@ -4,13 +4,14 @@ const headers = {
   username: 'KDT4_LeeEoJin'
 }
 
-export async function createTodo(title) {
+export async function createTodo(title, order) {
   try {
     const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos', {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        title
+        title : title,
+        order : order
       })
     })
     const json = await res.json()

@@ -1,72 +1,183 @@
-body{
+body {
   display: flex;
   flex-direction: column;
 }
 
+/*title*/
+.title {
+  width: 100%;
+  display: flex;
+  font-family: 'Covered By Your Grace', cursive;
+
+  span {
+    margin: 0 auto;
+    font-size: 80px;
+    font-weight: bolder;
+    background: linear-gradient(to right, #fc00ff, #00dbde);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 /*create*/
-.create{
+.create {
   margin: 10px auto;
-  input{
-    border: solid 2px #666;
+  font-family: 'Poor Story', cursive;
 
+  input[type=text] {
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1rem 2rem hsl(0 0% 0% / 30%);
   }
-  button{
-    border: solid 2px #666;
+
+  button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1rem 2rem hsl(0 0% 0% / 30%);
+  }
+
+  /*star*/
+  .star {
+    visibility: hidden;
+    font-size: 25px;
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+      content: "\2605";
+      background: linear-gradient(to right, #C9D6FF, #E2E2E2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: absolute;
+      visibility: visible;
+      rotate: 20deg;
+      left: 0;
+      top: -30px;
+      color: #818686;
+    }
+
+    &:checked:before {
+      content: "\2605";
+      background: linear-gradient(to right, #f7ff00, #db36a4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: absolute;
+      left: -30px;
+      rotate: 20deg;
+      left: 0;
+      top: -30px;
+    }
   }
 }
-
-// star
-.star {
-  visibility:hidden;
-  font-size:30px;
-  cursor:pointer;
-  position: relative;
-  
-  &:before {
-    content: "\2606";
-    position: absolute;
-    visibility:visible;
-    left: -30px;
-   }
-
-   &:checked:before {
-    content: "\2605";
-    position: absolute;
-    left: -30px;
-   }
-}
-
 
 /*todo list*/
-.todo-container{
-  margin: 10px auto;
+.todo-container {
+  font-family: 'Poor Story', cursive;
+  margin: 20px auto 0px auto;
   font-size: 20px;
   display: flex;
   flex-direction: column;
 
-  .todolist{
+  .todolist {
     margin: 5px;
+    width: 430px;
+    height: 50px;
+    border-radius: 5px;
     position: relative;
-    background-color: #666;
+    border: none;
+    background: linear-gradient(to right, #f6f7f8, #eaeeef);
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075);
   }
 
-  input[type=text]{
-    width: 200px;
+
+  input[type=text] {
+    position: absolute;
+    margin-top: 5px;
+    left: 30px;
+    background-color: transparent;
+    color: #666;
+    position: absolute;
+    top: -1px;
+    border: none;
+    width: 400px;
     padding: 5px 10px;
-    margin: 5px;
     text-align: left;
   }
 
-  .btn--update{
-    position: absolute;
-    right: -60px; 
-    top: 10px;
+  /*important*/
+  .important {
+    color: #111212 !important;
+    font-weight: 900 !important;
   }
 
-  .btn--delete{
+
+  .btn--update {
+    font-family: 'Covered By Your Grace', cursive;
     position: absolute;
-    right: -60px; 
-    top: 10px;
+    padding: 0 10px;
+    right: -75px;
+    top: 0;
+    height: 50px;
+    width: 50px;
+    font-weight: 900;
+    font-size: 14px;
+    color: #fff;
+    opacity: 0;
+    background-repeat: no-repeat;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: linear-gradient(to right, #67B26F, #4ca2cd);
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+    ;
+    cursor: pointer;
+  }
+
+  .btn--delete {
+    font-family: 'Covered By Your Grace', cursive;
+    position: absolute;
+    padding: 0 10px;
+    right: -48px;
+    top: 0;
+    height: 50px;
+    width: 51px;
+    font-weight: 900;
+    font-size: 14px;
+    color: #fff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: linear-gradient(to right, #4568DC, #B06AB3);
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+    ;
+    cursor: pointer;
+  }
+
+  p {
+    position: absolute;
+    font-size: 10px;
+    right: 10px;
+  }
+
+  .date__create {
+    top: 35px;
+    right: 124px;
+  }
+
+  .date__update {
+    top: 35px;
   }
 }
 
@@ -75,39 +186,84 @@ body{
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+
   span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: gray;
-  border-radius: 50%;    
-  animation: loading 1s 0s linear infinite;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-color: gray;
+    border-radius: 50%;
+    animation: loading 1s 0s linear infinite;
 
-  &:nth-child(1) {  
-    animation-delay: 0s;
-    background-color: red;
-  }
+    &:nth-child(1) {
+      animation-delay: 0s;
+      background-color: #12c2e9;
+    }
 
-  &:nth-child(2) {
-    animation-delay: 0.2s;
-    background-color: orange;
-  }
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+      background-color: #c471ed;
+    }
 
-  &:nth-child(3) {
-    animation-delay: 0.4s;
-    background-color: yellowgreen;
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+      background-color: #f64f59;
+    }
   }
 }
-}
+
 /*loading animation*/
-@keyframes loading {       
-  0%,                      
+@keyframes loading {
+
+  0%,
   100% {
-    opacity: 0;            
-    transform: scale(0.5); 
+    opacity: 0;
+    transform: scale(0.5);
   }
+
   50% {
-    opacity: 1;             
-    transform: scale(1.2); 
+    opacity: 1;
+    transform: scale(1.2);
   }
+}
+
+/*filter*/
+.filter {
+  font-family: 'Poor Story', cursive;
+  position: absolute;
+  top: 150px;
+  right: 10%;
+  font-size: 16px;
+
+  #done {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 10px;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+    ;
+    background: linear-gradient(to bottom, #f8f9fa, #fcfdfd);
+  }
+}
+
+/*all delete*/
+.btn__all-delete {
+  position: absolute;
+  top: 0;
+  right: -80px;
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+  ;
+  background: linear-gradient(to bottom, #56595b, #818485);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 15px;
+  border-radius: 10px;
 }
