@@ -34,6 +34,7 @@ btnEl.addEventListener('click', async () => {
 function renderTodos(todos) {
   const liEls = todos.map(todo => {
 
+    console.log(todo)
     // div
     const divEl = document.createElement('div')
     divEl.classList.add("todolist", "list-group-item")
@@ -48,6 +49,19 @@ function renderTodos(todos) {
     inputUpdateEl.type = "text"
     inputUpdateEl.value = todo.title
     inputUpdateEl.focus()
+
+    // create date
+    const createDate = document.createElement('p')
+    let date = /....-..-../ig.exec(todo.createdAt)
+    let time = /..:../ig.exec(todo.createdAt)
+    createDate.innerText = `생성일 : ${date} ${time}`
+
+    // update date
+    const updateDate = document.createElement('p')
+    let date2 = /....-..-../ig.exec(todo.updatedAt)
+    let time2 = /..:../ig.exec(todo.updatedAt)
+    updateDate.innerText = `수정일 : ${date2} ${time2}`
+
 
     // input-todo
     let inputText = inputUpdateEl.value
@@ -97,7 +111,7 @@ function renderTodos(todos) {
       renderTodos(todos)
     })
 
-    divEl.append(checkboxEl, inputUpdateEl, btnUpdateEl, btnDeleteEl)
+    divEl.append(checkboxEl, inputUpdateEl, btnUpdateEl, btnDeleteEl, createDate, updateDate)
 
     return divEl
   })
@@ -108,7 +122,6 @@ function renderTodos(todos) {
 
 // select done
 const selectEl = document.querySelector("#done")
-console.log(selectEl.value)
 
 selectEl.addEventListener("change", async ()=>{
   todoConatinerEl.innerHTML = ''
