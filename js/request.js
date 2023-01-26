@@ -16,7 +16,6 @@ export async function createTodo(title) {
     const json = await res.json()
     console.log(json)
   } catch (error) {
-    // 사용자에게 어떤 에러가 발생했는지 보여주는 코드
   }
 }
 
@@ -29,7 +28,6 @@ export async function readTodos() {
     const json = await res.json()
     return json
   } catch (error) {
-    // 강제로 에러 발생!
     throw error
   }
 }
