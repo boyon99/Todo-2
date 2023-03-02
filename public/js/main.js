@@ -21,6 +21,7 @@ inputEl.addEventListener('keydown', event => {
   }
 })
 btnEl.addEventListener('click', async () => {
+  // important
   const isStarEl = starEl.checked?"1":"0"
   await createTodo(inputText, isStarEl)
   const todos = await readTodos()
@@ -113,7 +114,7 @@ function renderTodos(todos) {
     })
 
     // animation
-    divEl.addEventListener('mouseover', () => {
+    divEl.addEventListener('mouseenter', () => {
       gsap.to(btnUpdateEl, 2, {
         opacity: 1,
         x: 20

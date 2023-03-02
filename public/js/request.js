@@ -1,6 +1,6 @@
 const headers = {
   'Content-Type': 'application/json',
-  apikey: 'FcKdtJs202301',
+  apikey: process.env.apikey,
   username: 'KDT4_LeeEoJin'
 }
 
